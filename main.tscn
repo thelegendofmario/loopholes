@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgwdinkxp08rc"]
+
+[ext_resource type="Texture2D" uid="uid://cn3q6snrkosfe" path="res://icon.svg" id="1_bvsf6"]
+[ext_resource type="PackedScene" uid="uid://c5627u7dbypxg" path="res://player.tscn" id="2_8sg8u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jrad"]
+size = Vector2(384, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h82d8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bvsf6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Main" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(248, 380)
+shape = SubResource("RectangleShape2D_3jrad")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+position = Vector2(256, 380)
+sprite_frames = SubResource("SpriteFrames_h82d8")
+
+[node name="Player" parent="." instance=ExtResource("2_8sg8u")]
+position = Vector2(288, 24)

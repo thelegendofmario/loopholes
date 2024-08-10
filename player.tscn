@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5627u7dbypxg"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_71c5h"]
+[ext_resource type="Texture2D" uid="uid://cn3q6snrkosfe" path="res://icon.svg" id="2_f72ww"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_616w5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f72ww")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_awgah"]
+size = Vector2(128, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bo4ds"]
+radius = 20.14
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_71c5h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_616w5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_awgah")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="OnFloor" type="ShapeCast2D" parent="."]
+position = Vector2(-48, 80)
+shape = SubResource("CircleShape2D_bo4ds")
+target_position = Vector2(96, 0)
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
