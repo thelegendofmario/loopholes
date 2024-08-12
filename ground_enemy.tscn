@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://dabh8gy0ljl8p"]
+
+[ext_resource type="Script" path="res://ground_enemy.gd" id="1_j6g11"]
+[ext_resource type="Texture2D" uid="uid://cxhsh14ttsukh" path="res://enemy.png" id="1_pcf67"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5cvj"]
+atlas = ExtResource("1_pcf67")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2ri4"]
+atlas = ExtResource("1_pcf67")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yfi2d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5cvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2ri4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5agig"]
+size = Vector2(11, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jpla2"]
+radius = 0.8
+
+[node name="GroundEnemy" type="Area2D"]
+script = ExtResource("1_j6g11")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_yfi2d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, -1)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_5agig")
+
+[node name="ShapeCastLeft" type="ShapeCast2D" parent="."]
+position = Vector2(-24, -24)
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_jpla2")
+target_position = Vector2(0, 9.6)
+
+[node name="ShapeCastRight" type="ShapeCast2D" parent="."]
+position = Vector2(32, -24)
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_jpla2")
+target_position = Vector2(0, 9.6)

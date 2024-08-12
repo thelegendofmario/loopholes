@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgwdinkxp08rc"]
+[gd_scene load_steps=12 format=3 uid="uid://dgwdinkxp08rc"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_tejpn"]
 [ext_resource type="PackedScene" uid="uid://dne30nv1tn6kp" path="res://spikes.tscn" id="2_1wvet"]
 [ext_resource type="PackedScene" uid="uid://c5627u7dbypxg" path="res://player.tscn" id="2_8sg8u"]
 [ext_resource type="Texture2D" uid="uid://ciiwc5kvpkuvc" path="res://New Piskel.png" id="2_fe2g2"]
+[ext_resource type="PackedScene" uid="uid://dabh8gy0ljl8p" path="res://ground_enemy.tscn" id="3_2qysm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q7135"]
 texture = ExtResource("2_fe2g2")
@@ -28,9 +29,16 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="Curve2D" id="Curve2D_6my1q"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 120, 512, 0, 0, 0, 0, 1032, 512, 0, 0, 0, 0, 120, 512)
+}
+point_count = 3
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_tejpn")
 spikeScene = ExtResource("2_1wvet")
+enemyScene = ExtResource("3_2qysm")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_8sg8u")]
 position = Vector2(-31.9999, 528)
@@ -78,5 +86,11 @@ curve = SubResource("Curve2D_rumxp")
 
 [node name="SpikeLocation" type="PathFollow2D" parent="SpikePath"]
 position = Vector2(88, 576)
+
+[node name="EnemyPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_6my1q")
+
+[node name="EnemyLocation" type="PathFollow2D" parent="EnemyPath"]
+position = Vector2(120, 512)
 
 [connection signal="body_entered" from="exitPipe" to="." method="_on_exit_pipe_body_entered"]

@@ -13,6 +13,7 @@ var grav_num = gravity * 2
 var jump_buffer
 func _ready():
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
+	Global.in_spikes = false
 func _physics_process(delta):
 	if velocity.x != 0:
 		$AnimatedSprite2D.flip_h = velocity.x < 0
@@ -64,6 +65,9 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	last_floor = is_on_floor()
+	
+	if Global.in_spikes == true:
+		get_tree().reload_current_scene()
 
 
 func _on_coyote_timer_timeout():

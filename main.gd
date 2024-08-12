@@ -1,6 +1,6 @@
 extends Node2D
 @export var spikeScene : PackedScene
-
+@export var enemyScene : PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -24,3 +24,10 @@ func _on_exit_pipe_body_entered(body):
 		
 			s.position = spike_spawn_location.position
 			get_parent().call_deferred("add_child", s)
+			#add_child(s)
+			
+			#var e = enemyScene.instantiate()
+			#var enemy_spawn_location = $EnemyPath/EnemyLocation
+			#enemy_spawn_location.progress_ratio = randf()
+			#e.position = enemy_spawn_location.position
+			#get_parent().call_deferred("add_child", e)
