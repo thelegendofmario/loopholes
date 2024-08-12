@@ -16,6 +16,10 @@ func _ready():
 func _physics_process(delta):
 	if velocity.x != 0:
 		$AnimatedSprite2D.flip_h = velocity.x < 0
+		#if $OnFloor.is_colliding():
+		$AnimatedSprite2D.play("walk")
+	if velocity.x == 0:
+		$AnimatedSprite2D.stop()
 	# Add the gravity.
 	if not is_on_floor():
 		
@@ -28,6 +32,8 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		if Input.is_action_just_pressed("up") and $OnFloor.is_colliding():
 			jump_buffer = true
+			
+			#$AnimatedSprite2D.play("jump")
 		#velocity.y = JUMP_VELOCITY
 	if is_on_floor():
 		if jump_buffer:
