@@ -58,7 +58,7 @@ size = Vector2(11.5, 9.6)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bo4ds"]
 radius = 4.17
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(4, 4)
 script = ExtResource("1_71c5h")
 

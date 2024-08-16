@@ -67,9 +67,10 @@ func _physics_process(delta):
 	last_floor = is_on_floor()
 	
 	if Global.in_spikes == true:
+		if Global.score > 0:
+			Global.score -= 1
 		get_tree().reload_current_scene()
 
 
 func _on_coyote_timer_timeout():
 	coyote = false 
-

@@ -8,13 +8,4 @@ const SPEED = 100.0
 
 
 func _physics_process(delta):
-	# Add the gravity.
-	if direction == "left":
-		position.x += SPEED
-	if direction == "right":
-		position.x -= SPEED
-	if $ShapeCastLeft.is_colliding():
-		direction = "right"
-	if $ShapeCastRight.is_colliding():
-		direction = "left"
-	
+	pass

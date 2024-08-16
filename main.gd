@@ -8,6 +8,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	Global.playerPos = $Player.position
 	$Camera2D/CanvasLayer/ScoreLabel.text = str(Global.score)
 	Global.enterPos = $enterPipe.position
 
@@ -26,8 +27,11 @@ func _on_exit_pipe_body_entered(body):
 			get_parent().call_deferred("add_child", s)
 			#add_child(s)
 			
+			
+			
 			#var e = enemyScene.instantiate()
-			#var enemy_spawn_location = $EnemyPath/EnemyLocation
+			##var enemy_spawn_location = $EnemyPath/EnemyLocation
 			#enemy_spawn_location.progress_ratio = randf()
 			#e.position = enemy_spawn_location.position
-			#get_parent().call_deferred("add_child", e)
+			#get_node("EnemyPath").call_deferred("add_child", e)
+		
