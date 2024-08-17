@@ -3,7 +3,7 @@ var jumping = false
 var coyote_frames = 60
 var coyote = false
 var last_floor = false
-var SPEED = 550.0
+@export var SPEED = 550.0
 var JUMP_VELOCITY = -500.0
 @export_range(0,20) var grav_transition
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -11,10 +11,13 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var gravity_normal = gravity
 var grav_num = gravity * 2
 var jump_buffer
+var finished_noise = false
 func _ready():
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
-	Global.in_spikes = false
+	Global.need_reset = false
+
 func _physics_process(delta):
+	#print(Global.need_reset)
 	if velocity.x != 0:
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 		#if $OnFloor.is_colliding():
@@ -66,11 +69,15 @@ func _physics_process(delta):
 	move_and_slide()
 	last_floor = is_on_floor()
 	
-	if Global.in_spikes == true:
+	if Global.need_reset == true:
 		if Global.score > 0:
 			Global.score -= 1
 		get_tree().reload_current_scene()
-
+		Global.need_reset = false
 
 func _on_coyote_timer_timeout():
 	coyote = false 
+
+
+func _on_die_noise_finished() -> void:
+	finished_noise = true

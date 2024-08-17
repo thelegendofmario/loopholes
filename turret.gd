@@ -16,6 +16,7 @@ func _on_fire_timer_timeout() -> void:
 	
 	owner.add_child(l)
 	l.transform = $FireFrom.global_transform
-	$FireTimer.wait_time = randf_range(2, 5)
+	$FireTimer.wait_time = randf_range(1, 2)
 	firing = false
+	$FireNoise.play()
 	$FireTimer.start()

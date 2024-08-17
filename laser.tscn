@@ -4,22 +4,23 @@
 [ext_resource type="Script" path="res://laser.gd" id="1_wya8c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_siap5"]
-size = Vector2(4, 100)
+size = Vector2(1.99991, 50)
 
 [node name="Laser" type="Area2D" groups=["laser"]]
 script = ExtResource("1_wya8c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(50, 2.38419e-07)
+position = Vector2(25, 3.57628e-07)
 texture = ExtResource("1_jlc41")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(50, 2.38419e-07)
+position = Vector2(25, -4.51207e-05)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_siap5")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(50, 2.38419e-07)
-scale = Vector2(5, 0.2)
+position = Vector2(25, 1.19209e-07)
+scale = Vector2(2.5, 0.1)
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
