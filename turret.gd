@@ -8,15 +8,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	look_at(Global.playerPos)
+	if Global.is_game_started:
+		look_at(Global.playerPos)
 
 
 func _on_fire_timer_timeout() -> void:
-	var l = laser.instantiate()
-	
-	owner.add_child(l)
-	l.transform = $FireFrom.global_transform
-	$FireTimer.wait_time = randf_range(1, 2)
-	firing = false
-	$FireNoise.play()
-	$FireTimer.start()
+	if Global.is_game_started:
+		var l = laser.instantiate()
+		owner.add_child(l)
+		l.transform = $FireFrom.global_transform
+		$FireTimer.wait_time = randf_range(1, 2)
+		firing = false
+		$FireNoise.play()
+		#$FireTimer.start()

@@ -1,8 +1,9 @@
 extends Node2D
 @export var spikeScene : PackedScene
-@export var enemyScene : PackedScene
+#@export var enemyScene : PackedScene
 @onready var spike_spawn_location = $SpikePath/SpikeLocation
 # Called when the node enters the scene tree for the first time.
+
 func _ready():
 	pass
 
@@ -10,7 +11,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	Global.playerPos = $Player.position
-	$Camera2D/CanvasLayer/ScoreLabel.text = str(Global.score)
+	$HUD/ScoreLabel.text = str("score: ", Global.score)
 	Global.enterPos = $enterPipe.position
 	if Global.laserHit:
 		$LaserHit.play()
@@ -38,3 +39,12 @@ func _on_exit_pipe_body_entered(body):
 			#e.position = enemy_spawn_location.position
 			#get_node("EnemyPath").call_deferred("add_child", e)
 		
+
+
+
+
+
+func new_game() -> void:
+	Global.score = 0
+	$HUD.show_message("Get Ready")
+	get_tree().call_group("spikes", "queue_free")

@@ -22,7 +22,6 @@ position = Vector2(6.5, 0.5)
 shape = SubResource("RectangleShape2D_u77le")
 
 [node name="FireTimer" type="Timer" parent="."]
-one_shot = true
 autostart = true
 
 [node name="FireFrom" type="Marker2D" parent="."]
