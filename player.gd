@@ -1,4 +1,5 @@
 extends CharacterBody2D
+signal died
 var jumping = false
 var coyote_frames = 60
 var coyote = false
@@ -72,10 +73,16 @@ func _physics_process(delta):
 		last_floor = is_on_floor()
 	
 		if Global.need_reset == true:
-			if Global.score > 0:
-				Global.score -= 1
-		#get_tree().reload_current_scene()
+			#if Global.score > 0:
+				#Global.score -= 1
+			Global.score = 0
+			Global.is_game_started = false
+			died.emit()
+			
 			Global.need_reset = false
+			#get_tree().reload_current_scene()
+			
+			#Global.need_reset = false
 
 func _on_coyote_timer_timeout():
 	coyote = false 

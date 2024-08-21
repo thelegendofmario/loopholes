@@ -92,5 +92,6 @@ stream = ExtResource("7_k5g04")
 
 [node name="StartTimer" type="Timer" parent="."]
 
+[connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="body_entered" from="exitPipe" to="." method="_on_exit_pipe_body_entered"]
 [connection signal="game_start" from="HUD" to="." method="new_game"]

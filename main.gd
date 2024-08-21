@@ -10,12 +10,24 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#print(Global.is_game_started)
 	Global.playerPos = $Player.position
 	$HUD/ScoreLabel.text = str("score: ", Global.score)
 	Global.enterPos = $enterPipe.position
 	if Global.laserHit:
 		$LaserHit.play()
+		Global.laserHit = false
+	if Global.laser_hit_player:
+		game_over()
+		Global.laser_hit_player = false
+	#if Global.need_reset == true:
+		#game_over()
+		#Global.need_reset = false
 
+func game_over():
+	$HUD.show_game_over()
+	$Player.position = Global.enterPos
+	Global.is_game_started = false
 
 func _on_exit_pipe_body_entered(body):
 	if body.is_in_group("player"):
@@ -46,5 +58,9 @@ func _on_exit_pipe_body_entered(body):
 
 func new_game() -> void:
 	Global.score = 0
-	$HUD.show_message("Get Ready")
+	$HUD.show_message("Get Ready", true)
 	get_tree().call_group("spikes", "queue_free")
+
+
+func _on_player_died() -> void:
+	game_over()
