@@ -19,10 +19,10 @@ func show_game_over():
 
 	show_message("SpikeField", false)
 	$Message.show()
-	$QuitButton.show()
 	$Credits.show()
 	await get_tree().create_timer(1.0).timeout
 	$StartButton.show()
+	$QuitButton.show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

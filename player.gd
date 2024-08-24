@@ -75,7 +75,7 @@ func _physics_process(delta):
 		if Global.need_reset == true:
 			#if Global.score > 0:
 				#Global.score -= 1
-			Global.score = 0
+			#Global.score = 0
 			Global.is_game_started = false
 			died.emit()
 			

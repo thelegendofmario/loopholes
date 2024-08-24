@@ -27,6 +27,14 @@ theme_override_fonts/font = ExtResource("1_cld4m")
 theme_override_font_sizes/font_size = 61
 text = "Score: 00"
 
+[node name="HighscoreLabel" type="Label" parent="."]
+offset_top = 60.0
+offset_right = 40.0
+offset_bottom = 83.0
+theme_override_fonts/font = ExtResource("3_j6dmg")
+theme_override_font_sizes/font_size = 31
+text = "Highscore: 00"
+
 [node name="Message" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -91,11 +99,10 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_cld4m")
 theme_override_font_sizes/font_size = 21
 text = "Somebody else made this, 
-using Piskel, Godot, and 
-BeepBox
+using Piskel and Godot.
 
-thank you kenney for
-the fonts!!"
+thank you SketchyLogic 
+for the song!!!!"
 clip_text = true
 text_overrun_behavior = 1
 

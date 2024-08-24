@@ -1,5 +1,6 @@
 extends Node
 var score = 0
+var high_score = score
 var enterPos
 var need_reset = false
 var playerPos

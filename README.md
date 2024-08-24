@@ -4,6 +4,9 @@ this was a game made for the [Hack Club](https://hackclub.com/) [Arcade](https:/
 ## MOVEMENT
  use WASD or Arrow keys to move
 
+## HOW TO PLAY
+play it [here](https://thelegendofmario.github.io/games/spikefield/)
+
 ## GOAL
 try to get the highest score possible!
 do that by walking (and jumping) your way to the end, but watch out for the spikes that keep spawning and the turret both trying to kill you.

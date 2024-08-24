@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://player.gd" id="1_71c5h"]
 [ext_resource type="Texture2D" uid="uid://ds2udpm4pinhg" path="res://player_jump.png" id="2_0s5pt"]
 [ext_resource type="Texture2D" uid="uid://dl4kmd2oqtku0" path="res://player_walk.png" id="3_r78q6"]
-[ext_resource type="AudioStream" uid="uid://lchdk45dcotb" path="res://die.wav" id="4_bclr3"]
+[ext_resource type="AudioStream" uid="uid://b433t0u6il4uy" path="res://player_death.wav" id="5_dxp1n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aso6p"]
 atlas = ExtResource("2_0s5pt")
@@ -82,7 +82,6 @@ target_position = Vector2(4.2, 0)
 
 [node name="DieNoise" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, 3.25)
-stream = ExtResource("4_bclr3")
+stream = ExtResource("5_dxp1n")
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
-[connection signal="finished" from="DieNoise" to="." method="_on_die_noise_finished"]

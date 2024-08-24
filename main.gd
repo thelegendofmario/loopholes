@@ -5,14 +5,16 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	pass
+	$MainTheme.play(46.00)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#print(Global.is_game_started)
+	
 	Global.playerPos = $Player.position
 	$HUD/ScoreLabel.text = str("score: ", Global.score)
+	$HUD/HighscoreLabel.text = str("HIGHSCORE: ", Global.high_score)
 	Global.enterPos = $enterPipe.position
 	if Global.laserHit:
 		$LaserHit.play()
@@ -25,8 +27,11 @@ func _process(delta):
 		#Global.need_reset = false
 
 func game_over():
+	if Global.high_score < Global.score:
+		Global.high_score = Global.score
 	$HUD.show_game_over()
 	$Player.position = Global.enterPos
+	$Player/DieNoise.play()
 	Global.is_game_started = false
 
 func _on_exit_pipe_body_entered(body):
@@ -64,3 +69,7 @@ func new_game() -> void:
 
 func _on_player_died() -> void:
 	game_over()
+
+
+func _on_main_theme_finished() -> void:
+	$MainTheme.play()
